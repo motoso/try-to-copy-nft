@@ -12,6 +12,11 @@ const contractAddress = "0x4a8837a22024c6bddc3496cde6433ea1864618fb"
 const nftContract = new web3.eth.Contract(contract.abi, contractAddress)
 
 
+async function showTokenUri(id) {
+    const tokenURI = await nftContract.methods.tokenURI(id).call();
+    console.log(tokenURI);
+}
+
 async function mintNFT(tokenURI) {
     const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY, 'latest'); //get latest nonce
 
@@ -50,6 +55,7 @@ async function mintNFT(tokenURI) {
         })
 }
 
-mintNFT(
-    "ipfs://QmdeMRERE7smvxBCYTYF35dL3K9bHkjrU5ZV2DPfZVxupb"
-)
+showTokenUri(1);
+// mintNFT(
+//     "ipfs://QmdeMRERE7smvxBCYTYF35dL3K9bHkjrU5ZV2DPfZVxupb"
+// )
